@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Certificate | Thamos Delight</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0066ff;
+            --accent: #ff00d4;
+            --dark: #0a0a14;
+            --dark-lighter: #151522;
+            --text: #f0f0f0;
+            --shadow: rgba(0, 255, 157, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 20, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(0, 255, 157, 0.2),
+                        0 0 20px rgba(0, 255, 157, 0.1);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Certificate Container */
+        .certificate-container {
+            background: rgba(21, 21, 34, 0.95);
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7),
+                        0 0 0 2px rgba(0, 255, 157, 0.3),
+                        0 0 40px rgba(0, 255, 157, 0.2),
+                        inset 0 0 50px rgba(0, 255, 157, 0.1);
+            position: relative;
+            padding: 4rem;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            animation: floatCard 8s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0) rotateY(0); }
+            25% { transform: translateY(-15px) rotateY(2deg); }
+            75% { transform: translateY(-15px) rotateY(-2deg); }
+        }
+
+        /* Glowing Border */
+        .certificate-container:before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Certificate Header */
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .certificate-header:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .certificate-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .certificate-subtitle {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Certificate Body */
+        .certificate-body {
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .presented-by {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .institute-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            padding: 1rem;
+            background: rgba(0, 255, 157, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 157, 0.1);
+        }
+
+        .recipient-section {
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .recipient-section:before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .recipient-section:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .awarded-to {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+        }
+
+        .recipient-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 2rem;
+            border: 5px solid transparent;
+            background: linear-gradient(45deg, var(--primary), var(--accent)) border-box;
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
+            animation: photoGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes photoGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 157, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(0, 255, 157, 0.7); }
+        }
+
+        .recipient-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+
+        .course-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 3rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 255, 157, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-title:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            100% { left: 100%; }
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Certificate Footer */
+        .certificate-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid rgba(0, 255, 157, 0.2);
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-content {
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        /* Seal */
+        .seal {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            width: 140px;
+            height: 140px;
+            opacity: 0.9;
+            animation: rotateSeal 20s linear infinite;
+        }
+
+        @keyframes rotateSeal {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .seal svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 10px rgba(0, 255, 157, 0.5));
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.5);
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(255, 0, 212, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: none;
+            cursor: pointer;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 0, 212, 0.5);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary);
+            animation: floatAround 15s infinite linear;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .certificate-container {
+                padding: 3rem;
+            }
+            
+            .certificate-title {
+                font-size: 2.8rem;
+            }
+            
+            .recipient-name {
+                font-size: 2.5rem;
+            }
+            
+            .certificate-footer {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .certificate-container {
+                padding: 2rem;
+                margin-top: 4rem;
+            }
+            
+            .certificate-title {
+                font-size: 2.2rem;
+            }
+            
+            .institute-name {
+                font-size: 1.8rem;
+            }
+            
+            .recipient-name {
+                font-size: 2rem;
+            }
+            
+            .course-title {
+                font-size: 1.5rem;
+            }
+            
+            .recipient-photo {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .seal {
+                width: 100px;
+                height: 100px;
+                right: 1.5rem;
+                bottom: 1.5rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .certificate-container {
+                box-shadow: none;
+                border: 2px solid #000;
+            }
+            
+            .back-btn, .print-btn, .floating-elements, nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="top: 20%; left: 10%;"></div>
+        <div class="floating-element" style="top: 60%; left: 80%; animation-delay: -5s;"></div>
+        <div class="floating-element" style="top: 80%; left: 20%; animation-delay: -10s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Thamos Delight</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="certificate.html">Certificate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Certificate Container -->
+    <div class="certificate-container">
+        <div class="certificate-header">
+            <h1 class="certificate-title">CERTIFICATE OF COMPLETION</h1>
+            <p class="certificate-subtitle">Awarded for Excellence in Web Development</p>
+        </div>
+
+        <div class="certificate-body">
+            <p class="presented-by">This certificate is proudly presented by</p>
+            <h2 class="institute-name">TechNova Learning Institute</h2>
+            
+            <div class="recipient-section">
+                <p class="awarded-to">to</p>
+                <img src="https://pps.whatsapp.net/v/t61.24694-24/603260293_1718867812833349_6649638863976860653_n.jpg?ccb=11-4&oh=01_Q5Aa3QFmhPKalH98JlOqSHSGHk1_J0Uqqp6DOaDhnQvG1Kxc5Q&oe=695B7D46&_nc_sid=5e03e0&_nc_cat=104" 
+                     alt="Thamos Delight" 
+                     class="recipient-photo">
+                <h2 class="recipient-name">Thamos Delight</h2>
+            </div>
+
+            <p class="presented-by">in recognition of the successful completion of the course titled</p>
+            
+            <h2 class="course-title">Fundamentals of HTML & CSS Web Development</h2>
+            
+            <p class="description">
+                This certificate is awarded in acknowledgment of dedication, practical skill development, 
+                and demonstrated understanding of core front-end web technologies, including HTML structure 
+                and CSS styling principles. The recipient has shown exceptional commitment to mastering 
+                responsive design, accessibility standards, and modern web development practices.
+            </p>
+        </div>
+
+        <div class="certificate-footer">
+            <div class="footer-section">
+                <div class="footer-title">Date of Issue</div>
+                <div class="footer-content">26 December 2025</div>
+            </div>
+            
+            <div class="footer-section">
+                <div class="footer-title">Authorized By</div>
+                <div class="footer-content">
+                    <strong>Michael A. Johnson</strong><br>
+                    Lead Technical Instructor<br>
+                    TechNova Learning Institute
+                </div>
+            </div>
+        </div>
+
+        <div class="seal">
+            <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="140" height="140" fill="#00ff9d" viewBox="0 0 24 24">
+                <path d="M11 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
+                <path fill-rule="evenodd" d="M9.896 3.051a2.681 2.681 0 0 1 4.208 0c.147.186.38.282.615.255a2.681 2.681 0 0 1 2.976 2.975.681.681 0 0 0 .254.615 2.681 2.681 0 0 1 0 4.208.682.682 0 0 0-.254.615 2.681 2.681 0 0 1-2.976 2.976.681.681 0 0 0-.615.254 2.682 2.682 0 0 1-4.208 0 .681.681 0 0 0-.614-.255 2.681 2.681 0 0 1-2.976-2.975.681.681 0 0 0-.255-.615 2.681 2.681 0 0 1 0-4.208.681.681 0 0 0 .255-.615 2.681 2.681 0 0 1 2.976-2.975.681.681 0 0 0 .614-.255ZM12 6a3 3 0 1 0 0 6 3 3 0 1 0 0-6Z" clip-rule="evenodd"/>
+                <path d="M5.395 15.055 4.07 19a1 1 0 0 0 1.264 1.267l1.95-.65 1.144 1.707A1 1 0 0 0 10.2 21.1l1.12-3.18a4.641 4.641 0 0 1-2.515-1.208 4.667 4.667 0 0 1-3.411-1.656Zm7.269 2.867 1.12 3.177a1 1 0 0 0 1.773.224l1.144-1.707 1.95.65A1 1 0 0 0 19.915 19l-1.32-3.93a4.667 4.667 0 0 1-3.4 1.642 4.643 4.643 0 0 1-2.53 1.21Z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- Print Button -->
+    <button onclick="window.print()" class="print-btn">
+        <i class="fas fa-print"></i> Print Certificate
+    </button>
+
+    <script>
+        // Print functionality
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+
+        // Floating elements animation
+        document.querySelectorAll('.floating-element').forEach((el, index) => {
+            el.style.animationDelay = `${index * 5}s`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Thamos Delight</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0066ff;
+            --accent: #ff00d4;
+            --dark: #0a0a14;
+            --dark-lighter: #151522;
+            --text: #f0f0f0;
+            --shadow: rgba(0, 255, 157, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            perspective: 1000px;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 20, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(0, 255, 157, 0.2),
+                        0 0 20px rgba(0, 255, 157, 0.1);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Projects Container */
+        .projects-container {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        /* 3D Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+            transform-style: preserve-3d;
+        }
+
+        .project-card {
+            background: rgba(21, 21, 34, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0, 255, 157, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0) rotateY(0); }
+            50% { transform: translateY(-10px) rotateY(5deg); }
+        }
+
+        .project-card:hover {
+            transform: translateZ(50px) rotateY(-10deg);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9),
+                        0 0 40px rgba(0, 255, 157, 0.3),
+                        0 0 60px rgba(255, 0, 212, 0.2);
+            border-color: var(--primary);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.3rem 1rem;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--dark);
+            font-weight: 600;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transform: translateZ(40px);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .project-description {
+            margin-bottom: 2rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 102, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 102, 255, 0.4);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            transition: left 0.5s ease;
+        }
+
+        .project-link:hover {
+            transform: translateZ(30px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.4);
+        }
+
+        .project-link:hover:before {
+            left: 0;
+        }
+
+        .project-link i {
+            margin-left: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.5);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary);
+            animation: floatAround 15s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate3d(0, 0, 0); }
+            25% { transform: translate3d(100vw, 50vh, 0); }
+            50% { transform: translate3d(50vw, 100vh, 0); }
+            75% { transform: translate3d(0, 50vh, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-container {
+                padding: 6rem 1rem;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="top: 20%; left: 10%;"></div>
+        <div class="floating-element" style="top: 60%; left: 80%; animation-delay: -5s;"></div>
+        <div class="floating-element" style="top: 80%; left: 20%; animation-delay: -10s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Thamos Delight</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="certificate.html">Certificate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Projects Content -->
+    <div class="projects-container">
+        <h1 class="page-title">My Projects</h1>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-badge">Featured</div>
+                <h3>Divine Wisdom Computers</h3>
+                <p class="project-description">A complete business website for a computer services company with responsive design, service catalog, and contact system.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive</span>
+                </div>
+                <a href="https://delight911.github.io/Divinewisdomcomputers.com/" target="_blank" class="project-link">Live Website <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            
+            <div class="project-card">
+                <h3>Portfolio Website v2.0</h3>
+                <p class="project-description">Current professional portfolio with dark theme, responsive layout, and optimized performance.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">GitHub Pages</span>
+                </div>
+                <a href="https://github.com/ThamosD/Potfolio" target="_blank" class="project-link">View Code <i class="fab fa-github"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h3>Coming Soon...</h3>
+                <p class="project-description">Currently working on backend applications and cybersecurity tools. New projects will be added monthly.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Security</span>
+                </div>
+                <a href="contact.html" class="project-link">Stay Tuned</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <script>
+        // Floating elements animation
+        document.querySelectorAll('.floating-element').forEach((el, index) => {
+            el.style.animationDelay = `${index * 5}s`;
+        });
+
+        // Project card animations
+        document.querySelectorAll('.project-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
